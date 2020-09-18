@@ -11,3 +11,16 @@ height: 70px;
     transform: translate(-50%, -50%);
     color: #100000;
     }
+
+
+
+.center-text{
+    text-align: center;
+}
+
+.color-fondo{
+    background-color: #3f51b561;
+    cursor: pointer;
+}
+
+.icon { font-size: 48px; }

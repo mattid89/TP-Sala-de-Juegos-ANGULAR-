@@ -31,7 +31,7 @@ import { QuienSoyComponent } from './componentes/quien-soy/quien-soy.component';
 import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
 import { ListadoDePaisesComponent } from './componentes/listado-de-paises/listado-de-paises.component';
 import { MapaDeGoogleComponent } from './componentes/mapa-de-google/mapa-de-google.component'
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 import { InputJugadoresComponent } from './componentes/input-jugadores/input-jugadores.component';
 import { SexoPipe } from './pipes/sexo.pipe';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -42,7 +42,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth'
 import { environment } from '../environments/environment';
 
 
@@ -78,16 +80,19 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     RuteandoModule,
     HttpClientModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
-    }),
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
+    // }),
     BrowserAnimationsModule,
     MatToolbarModule,
     MatGridListModule,
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule, // storage
   ],
   providers: [ 
     JuegoServiceService, 
@@ -95,7 +100,6 @@ import { environment } from '../environments/environment';
     PaisesService,
     ArchivosJugadoresService,
     JugadoresService,
-    AngularFirestore
   ],
   bootstrap: [AppComponent]
 })

@@ -1,66 +1,22 @@
-<!--div>
-    <button routerLink="/Principal">Principal</button>
-    <button (click)="Juego('Adivina')">Adivina</button>
-    <button (click)="Juego('Agilidad')">Agilidad</button>
-    <button (click)="Juego('AdivinaMasListado')">Adivina+listado</button>
-    <button (click)="Juego('AgilidadaMasListado')">Agilidad+listado</button>  
-    <button routerLink="/error">Error</button>
-  
-</div-->
-
-<!--nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" routerLink="/Principal">Inicio</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li class="active"><a routerLink="/Juegos">Juegos</a></li>
-        <li><a data-toggle="tooltip" title="Hooray!" (click)="Juego('Adivina')">Adivina</a></li>
-        <li><a  (click)="Juego('Agilidad')">Agilidad</a></li>
-        <li><a  (click)="Juego('AdivinaMasListado')">Adivina+listado</a></li>
-        <li><a  (click)="Juego('AgilidadaMasListado')">Agilidad+listado</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mis Datos</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
-        </ul>
-    </div>
-  </nav-->
-
-
 <mat-toolbar color="primary">
-
-
   <button mat-button [matMenuTriggerFor]="menu">
     <span class="material-icons">
       menu
     </span>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Item 1</button>
-    <button mat-menu-item>Item 2</button>
+    <button mat-menu-item routerLink="/Juegos">Menú de Juegos</button>
+    <button mat-menu-item routerLink="/Juegos/Adivina">Adivina</button>
+    <button mat-menu-item routerLink="/Juegos/Agilidad">Agilidad</button>
+    <button mat-menu-item routerLink="/Juegos/AdivinaMasListado">Adivina+listado</button>
+    <button mat-menu-item routerLink="/Juegos/AgilidadaMasListado">Agilidad+listado</button>
   </mat-menu>
   <span routerLink="/Principal"> Inicio</span>
 
   <span class="example-spacer"></span>
   <a href="/Login">
-  <span class="material-icons">
-    exit_to_app
+    <span class="material-icons">
+      exit_to_app
     </span>
   </a>
 </mat-toolbar>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-
-    <div id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a routerLink="/Juegos">Menú de Juegos</a></li>
-        <li><a data-toggle="tooltip" title="Hooray!" (click)="Juego('Adivina')">Adivina</a></li>
-        <li><a (click)="Juego('Agilidad')">Agilidad</a></li>
-        <li><a (click)="Juego('AdivinaMasListado')">Adivina+listado</a></li>
-        <li><a (click)="Juego('AgilidadaMasListado')">Agilidad+listado</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>

@@ -1,17 +1,15 @@
 import { log } from 'util';
 import { Injectable } from '@angular/core';
 
-import { Http, Response } from '@angular/http';
-
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Injectable()
 export class MiHttpService {
 
-  constructor( public http: Http ) { }
+  constructor( public http: HttpClient ) { }
 
   public httpGetP ( url: string)
   {
@@ -28,24 +26,24 @@ export class MiHttpService {
     .get( url )
     .subscribe( data => {
       console.log( data );
+      log('ola llaala');
       return data;
     });
   }
 
-  public httpGetO ( url: string): Observable<Response>
-  {
+  public httpGetO ( url: string) {
     return this.http.get( url )
-      .map( ( res: Response ) => res.json())
-      .catch( ( err: any ) => Observable.throw(err.json().error || 'Server error'));
+      .map( ( res ) => res )
+      .catch( ( err: any ) => {throw (err.error || 'Server error')});
   }
 
 
-  private extractData ( res: Response )
+  private extractData ( res )
   {
-    return res.json() || {};
+    return res || {};
   }
 
-  private handleError ( error: Response | any )
+  private handleError ( error )
   {
     return error;
   }

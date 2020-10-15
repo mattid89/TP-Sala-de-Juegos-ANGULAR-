@@ -46,7 +46,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { environment } from '../environments/environment';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ModalComponent } from './componentes/registro/modal/modal.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,8 @@ import { environment } from '../environments/environment';
     MapaDeGoogleComponent,
     JugadoresListadoComponent,
     InputJugadoresComponent,
-    SexoPipe
+    SexoPipe,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +93,10 @@ import { environment } from '../environments/environment';
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
@@ -101,6 +109,7 @@ import { environment } from '../environments/environment';
     ArchivosJugadoresService,
     JugadoresService,
   ],
+  entryComponents: [ModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,7 +6,7 @@ import { Jugador } from '../clases/jugador';
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseService {
+export class JugadoresFirebaseService {
 
   constructor(private db: AngularFirestore) { }
 
@@ -26,7 +26,7 @@ export class FirebaseService {
     }
 
     public updateJugador(documentId: string, jugador: Jugador) {
-      return this.db.collection('jugadores').doc(documentId).update({...jugador});
+      return this.db.collection('jugadores').doc(documentId).set({...jugador});
     }
 
     public deleteJugador(documentId: string) {

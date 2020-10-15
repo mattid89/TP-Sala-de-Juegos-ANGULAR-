@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Registro</h1>
+<div mat-dialog-content>
+    <p>Complete los datos</p>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" id="email" placeholder="abc@def.com" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" id="clave1" formControlName="clave1">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Confirme Contraseña</mat-label>
+            <input matInput type="password" id="clave2" formControlName="clave2">
+        </mat-form-field>
+
+
+        <button mat-raised-button color="warn">Registrar</button>
+        <button mat-button type="submit" (click)="onNoClick()">Me arrepentí</button><br>
+        <small *ngIf="(registerForm.invalid && submitted)" style="color: red;"><strong>Cargue correctamente todos los
+                campos</strong></small>
+    </form>
+
+</div>

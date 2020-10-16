@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { RegistroData } from 'src/app/clases/registro.data.model';
 
 @Component({
   selector: 'app-modal',
@@ -9,8 +10,9 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class ModalComponent implements OnInit {
 
+  @Output() registrar = new EventEmitter<RegistroData>();
   submitted: boolean = false;
-  data: {email: string, clave: string};
+  data: RegistroData;
  
   registerForm = new FormGroup({
     email: new FormControl('', Validators.required),

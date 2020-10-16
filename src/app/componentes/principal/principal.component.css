@@ -18,9 +18,23 @@ height: 70px;
     text-align: center;
 }
 
-.color-fondo{
+.card-menu {
     background-color: #3f51b561;
     cursor: pointer;
+    height: 300px;
+    margin: 20px;
+    display: grid;
+    place-items: center;
 }
 
 .icon { font-size: 48px; }
+
+.box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.box>* {
+    flex: 1 1 400px;
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { RegistroData } from 'src/app/clases/registro.data.model';
 
@@ -10,15 +10,17 @@ import { RegistroData } from 'src/app/clases/registro.data.model';
 })
 export class ModalComponent implements OnInit {
 
-  @Output() registrar = new EventEmitter<RegistroData>();
   submitted: boolean = false;
   data: RegistroData;
  
   registerForm = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+    ]),
     clave1: new FormControl('', Validators.required),
-    clave2: new FormControl('', [Validators.required, this.samePasswordValidator])
-  });
+    clave2: new FormControl('', Validators.required)
+  }, { validators: samePasswordValidator});
 
 
 
@@ -32,14 +34,19 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  samePasswordValidator(c: AbstractControl): { invalid: boolean } {
-      if (c.value.clave1 !== c.value.clave2) {
-          return {invalid: true};
-      }
-  }
-
   onSubmit() {
-    console.log('submit', this.registerForm);
+    if (this.registerForm.invalid) {
+      return;
+    }
+    this.dialogRef.close(this.registerForm.value);
   }
 
 }
+
+
+const samePasswordValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const clave1 = control.get('clave1');
+  const clave2 = control.get('clave2');
+
+  return clave1.value !== clave2.value ? { isNotSimilar: true } : null;
+};

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
+import { JugadoresFirebaseService } from 'src/app/servicios/jugadores.firebase.service';
+import { FirebaseService } from 'src/app/servicios/firebase.service';
 //para poder hacer las validaciones
 //import { Validators, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 @Component({
@@ -11,12 +12,10 @@ import { ModalComponent } from './modal/modal.component';
 })
 export class RegistroComponent implements OnInit {
 
- /* constructor( private miConstructor:FormBuilder) { }
-  email=new FormControl('',[Validators.email]);
-  formRegistro:FormGroup=this.miConstructor.group({
-    usuario:this.email
-  });*/
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog, 
+    private jugadoresFirebaseService: JugadoresFirebaseService,
+    public firebaseService: FirebaseService) { }
 
   ngOnInit() {
   }
@@ -28,9 +27,9 @@ export class RegistroComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       console.log(result);
-      // this.animal = result;
+      // TODO: hacer el login en firebase, registrar el usuario
+      // una vez registrado el usuario para login guardar los datos del usuario en una base jugadores en firebase
     });
   }
 

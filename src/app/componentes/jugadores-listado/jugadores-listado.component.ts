@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JugadoresService } from '../../servicios/jugadores.service';
+import { JugadoresFirebaseService } from 'src/app/servicios/jugadores.firebase.service';
 @Component({
   selector: 'app-jugadores-listado',
   templateUrl: './jugadores-listado.component.html',
@@ -8,14 +8,9 @@ import { JugadoresService } from '../../servicios/jugadores.service';
 export class JugadoresListadoComponent implements OnInit {
 
   listado:any
-  miJugadoresServicio:JugadoresService
   
-    constructor(serviceJugadores:JugadoresService) {
-      this.miJugadoresServicio = serviceJugadores;
-      
-    }
+  constructor(public serviceJugadores: JugadoresFirebaseService) { }
     
-
 
   ngOnInit() {
   }
@@ -23,25 +18,32 @@ export class JugadoresListadoComponent implements OnInit {
 
   TraerTodos(){
     //alert("totos");
-    this.miJugadoresServicio.traertodos('jugadores/','todos').then(data=>{
-      //console.info("jugadores listado",(data));
-      this.listado= data;
-
-    })
+    this.serviceJugadores.getJugadores()
+    .subscribe(
+      res => {
+        console.log(res);
+        this.listado = res;
+      },
+      err => console.log
+    );
   }
-  TraerGanadores(){
-    this.miJugadoresServicio.traertodos('jugadores/','ganadores').then(data=>{
-      //console.info("jugadores listado",(data));
-      this.listado= data;
 
-    })
-  }
-  TraerPerdedores(){
-    this.miJugadoresServicio.traertodos('jugadores/','perdedores').then(data=>{
-      //console.info("jugadores listado",(data));
-      this.listado= data;
 
-    })
-  }
+  // TraerGanadores(){
+  //   this.serviceJugadores.traertodos('jugadores/','ganadores').then(data=>{
+  //     //console.info("jugadores listado",(data));
+  //     this.listado= data;
+
+  //   })
+  // }
+
+
+  // TraerPerdedores(){
+  //   this.serviceJugadores.traertodos('jugadores/','perdedores').then(data=>{
+  //     //console.info("jugadores listado",(data));
+  //     this.listado= data;
+
+  //   })
+  // }
 
 }

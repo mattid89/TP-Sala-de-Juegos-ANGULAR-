@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sala-d9810": {
+      "hosting": {
+        "sala-juegos": [
+          "sala-d9810"
+        ]
+      }
+    }
+  }
+}
